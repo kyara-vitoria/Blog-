@@ -3,161 +3,1184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Beco das Criaturas - Prisioneiro de Azkaban</title>
+
+    <title>DEXTER | Arquivo Criminal</title>
+
     <style>
-        /* Estilos Gerais com estética mágica e sombria */
-        body {
-            background-color: #0b0f19; /* Azul bem escuro, quase preto */
-            color: #e0e6ed; /* Texto claro/acinzentado para dar mistério */
-            font-family: 'Georgia', serif; /* Fonte que lembra livros antigos */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050505;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* MENU */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 1px solid #680000;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            height: 70px;
+            padding: 0 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: #d00000;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #e00000;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 100px 20px 50px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #000000 0%,
+                    rgba(0, 0, 0, 0.85) 45%,
+                    rgba(0, 0, 0, 0.45) 100%
+                ),
+                url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .tag {
+            color: #e00000;
+            border: 1px solid #850000;
+            padding: 8px 15px;
+            display: inline-block;
+            letter-spacing: 2px;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            color: #c90000;
+            font-size: clamp(70px, 13vw, 150px);
+            font-weight: 900;
+            font-style: italic;
+            line-height: 0.8;
+            text-shadow: 5px 5px 0 #180000;
+        }
+
+        .hero h2 {
+            margin-top: 30px;
+            font-size: 25px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin-top: 20px;
+            color: #bbb;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* BOTÕES */
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid #a00000;
+        }
+
+        .button-red {
+            background: #a00000;
+            color: white;
+        }
+
+        .button-red:hover {
+            background: #d00000;
+        }
+
+        .button-dark {
+            background: #080808;
+            color: white;
+        }
+
+        .button-dark:hover {
+            border-color: #d00000;
+            color: #e00000;
+        }
+
+        /* CURTIDA */
+
+        .like-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        #likeButton {
+            border: 2px solid #850000;
+            background: #090909;
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        #likeButton:hover {
+            background: #350000;
+        }
+
+        #likeButton.liked {
+            background: #a00000;
+            border-color: #ff3333;
+        }
+
+        #heart {
+            font-size: 25px;
+            margin-right: 8px;
+        }
+
+        #likeCount {
+            color: #aaa;
+            font-size: 17px;
+        }
+
+        /* SEÇÕES */
+
+        section {
+            padding: 90px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .title {
+            margin-bottom: 45px;
+        }
+
+        .title small {
+            color: #c00000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .title h2 {
+            margin-top: 8px;
+            font-size: 45px;
+            text-transform: uppercase;
+        }
+
+        .title-line {
+            width: 80px;
+            height: 3px;
+            background: #c00000;
+            margin-top: 15px;
+        }
+
+        /* SOBRE */
+
+        #sobre {
+            background: #090909;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .crime-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border: 2px solid #400000;
+            filter: grayscale(60%);
+        }
+
+        /* CÓDIGO */
+
+        #codigo {
+            background:
+                linear-gradient(rgba(0,0,0,.9), rgba(0,0,0,.95)),
+                url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rules {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .rule {
+            background: #0d0d0d;
+            border: 1px solid #333;
+            padding: 30px;
+            border-top: 3px solid #900000;
+        }
+
+        .rule-number {
+            color: #c00000;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .rule h3 {
+            margin: 15px 0;
+            text-transform: uppercase;
+        }
+
+        .rule p {
+            color: #999;
             line-height: 1.6;
         }
 
-        /* Cabeçalho do Blog */
-        header {
-            background: linear-gradient(135deg, #1a1c29, #0d1117);
-            border-bottom: 3px solid #7f6024; /* Dourado envelhecido */
+        /* PERÍCIA */
+
+        #pericia {
+            background: #050505;
+        }
+
+        .forensic {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #0d0d0d;
+            border: 1px solid #292929;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #a00000;
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: #d00000;
+        }
+
+        .card h3 {
+            margin: 15px 0;
+            font-size: 23px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* PERSONAGENS */
+
+        #personagens {
+            background: #080808;
+        }
+
+        .characters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .character {
+            background: #111;
+            border: 1px solid #292929;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .character:hover {
+            transform: translateY(-7px);
+            border-color: #a00000;
+        }
+
+        .character img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            filter: grayscale(70%);
+        }
+
+        .character-info {
+            padding: 20px;
+        }
+
+        .character-info h3 {
+            color: #d00000;
+            margin-bottom: 8px;
+        }
+
+        .character-info span {
+            color: #777;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        .character-info p {
+            margin-top: 12px;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        /* TEMPORADAS */
+
+        #temporadas {
+            background: #050505;
+        }
+
+        .seasons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .season {
+            padding: 22px;
+            background: #101010;
+            border-left: 4px solid #700000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .season:hover {
+            background: #181818;
+            border-left-color: #e00000;
+        }
+
+        .season span {
+            color: #777;
+        }
+
+        /* FINAL */
+
+        .final {
+            text-align: center;
+            background: #090909;
+        }
+
+        .classified {
+            display: inline-block;
+            color: #d00000;
+            border: 2px solid #a00000;
+            padding: 10px 20px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .final h2 {
+            font-size: 45px;
+            color: #c00000;
+        }
+
+        .final p {
+            color: #888;
+            margin: 20px 0;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #020202;
+            border-top: 1px solid #400000;
             text-align: center;
             padding: 40px 20px;
         }
 
-        header h1 {
-            color: #c9a054; /* Dourado mágico */
-            margin: 0;
-            font-size: 2.5em;
-            text-shadow: 0px 0px 15px rgba(201, 160, 84, 0.6); /* Efeito de brilho patrono */
-            letter-spacing: 2px;
+        footer p {
+            color: #666;
+            margin-top: 12px;
         }
 
-        header p {
-            font-style: italic;
-            color: #8fa0b5;
+        /* RESPONSIVO */
+
+        @media (max-width: 900px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .rules {
+                grid-template-columns: 1fr;
+            }
+
+            .forensic {
+                grid-template-columns: 1fr;
+            }
+
+            .characters {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
         }
 
-        /* Conteúdo Principal */
-        main {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
+        @media (max-width: 600px) {
+
+            .characters {
+                grid-template-columns: 1fr;
+            }
+
+            .seasons {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 75px;
+            }
+
+            .hero h2 {
+                font-size: 18px;
+            }
+
+            .like-container {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
         }
 
-        /* Estilo dos Posts do Blog */
-        article {
-            background-color: #131924; /* Fundo dos cards um pouco mais claro que o body */
-            border: 1px solid #242f41;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        article h2 {
-            color: #c9a054;
-            margin-top: 0;
-        }
-
-        .post-meta {
-            font-size: 0.9em;
-            color: #63758d;
-            margin-bottom: 15px;
-        }
-
-        /* Estilo das Imagens */
-        .blog-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 2px solid #38475e;
-            margin: 15px 0;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Área de Interação (Botões) */
-        .interaction-area {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed #242f41;
-        }
-
-        .magic-btn {
-            background-color: #1c2533;
-            color: #c9a054;
-            border: 1px solid #7f6024;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Georgia', serif;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-        }
-
-        /* Efeito mágico ao passar o mouse pelos botões */
-        .magic-btn:hover {
-            background-color: #7f6024;
-            color: #0b0f19;
-            box-shadow: 0px 0px 8px rgba(201, 160, 84, 0.8);
-        }
-
-        /* Rodapé */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #52637a;
-            font-size: 0.9em;
-            border-top: 1px solid #1c2533;
-            margin-top: 50px;
-        }
     </style>
 </head>
+
 <body>
 
+    <!-- MENU -->
+
     <header>
-        <h1>O Prisioneiro de Azkaban</h1>
-        <p>"Eu juro solenemente não fazer nada de bom."</p>
+
+        <nav>
+
+            <div class="logo">
+                DEXTER<span>.</span>
+            </div>
+
+            <ul>
+
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+
+                <li>
+                    <a href="#sobre">Arquivo</a>
+                </li>
+
+                <li>
+                    <a href="#codigo">Código</a>
+                </li>
+
+                <li>
+                    <a href="#pericia">Perícia</a>
+                </li>
+
+                <li>
+                    <a href="#personagens">Personagens</a>
+                </li>
+
+                <li>
+                    <a href="#temporadas">Temporadas</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
     </header>
 
-    <main>
-        <article>
-            <h2>O Retorno dos Dementadores e o Feitiço Expecto Patronum</h2>
-            <div class="post-meta">Postado em 10 de Julho de 2026 por Alvo</div>
-            <p>O terceiro ano de Harry Potter em Hogwarts é marcado por uma atmosfera muito mais densa e perigosa. Com a fuga de Sirius Black de Azkaban, os temidos Dementadores cercam a escola, sugando toda a felicidade daqueles que se aproximam. Para combatê-los, Harry precisa dominar um dos feitiços mais complexos do mundo bruxo.</p>
-            
-            <img class="blog-image" src="http://googleusercontent.com/image_collection/image_retrieval/6440300567074556087_1" alt="Estética de Harry Potter e o Prisioneiro de Azkaban">
-            
-            <p>Sob a tutela do Professor Lupin, Harry descobre que a única defesa é o feitiço <em>Expecto Patronum</em>, uma manifestação de pura energia positiva que assume a forma de um animal prateado — no caso de Harry, um imponente Cervo.</p>
 
-            <div class="interaction-area">
-                <button class="magic-btn">❤️ Curtir</button>
-                <button class="magic-btn">👍 Gostei</button>
-                <button class="magic-btn">👎 Não Gostei</button>
+    <!-- INÍCIO -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <span class="tag">
+                ARQUIVO CONFIDENCIAL • MIAMI METRO
+            </span>
+
+            <h1>DEXTER</h1>
+
+            <h2>
+                Perito criminal. Serial killer. Código.
+            </h2>
+
+            <p>
+                Durante o dia, Dexter Morgan trabalha
+                como especialista em padrões de sangue.
+                Durante a noite, ele segue seu próprio código.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#sobre" class="button button-red">
+                    Abrir arquivo
+                </a>
+
+                <a href="#personagens" class="button button-dark">
+                    Personagens
+                </a>
+
             </div>
-        </article>
 
-        <article>
-            <h2>Os Segredos do Mapa do Maroto e o Vira-Tempo</h2>
-            <div class="post-meta">Postado em 09 de Julho de 2026 por Hermione</div>
-            <p>Além das ameaças, este ano trouxe relíquias mágicas incríveis. O Mapa do Maroto, entregue por Fred e Jorge, revela cada canto de Hogwarts e os passos de todos que nela habitam. Paralelamente, os mistérios do tempo se desdobram com o Vira-Tempo de Hermione, crucial para mudar o destino de inocentes nas horas finais desta grande aventura.</p>
 
-            <img class="blog-image" src="http://googleusercontent.com/image_collection/image_retrieval/7516237583765006608_1" alt="Elementos mágicos de O Prisioneiro de Azkaban">
+            <!-- BOTÃO DE CURTIDA -->
 
-            <p>Estes artefactos não só ajudaram a desvendar segredos do passado dos pais de Harry, mas também provaram que o tempo pode ser um aliado poderoso quando usado com sabedoria para salvar vidas.</p>
+            <div class="like-container">
 
-            <div class="interaction-area">
-                <button class="magic-btn">❤️ Curtir</button>
-                <button class="magic-btn">👍 Gostei</button>
-                <button class="magic-btn">👎 Não Gostei</button>
+                <button id="likeButton">
+
+                    <span id="heart">♡</span>
+
+                    <span id="likeText">
+                        CURTIR
+                    </span>
+
+                </button>
+
+                <span id="likeCount">
+                    0 curtidas
+                </span>
+
             </div>
-        </article>
-    </main>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+
+    <section id="sobre">
+
+        <div class="container">
+
+            <div class="title">
+
+                <small>Arquivo #DM-01</small>
+
+                <h2>O Perito</h2>
+
+                <div class="title-line"></div>
+
+            </div>
+
+            <div class="about">
+
+                <div>
+
+                    <p>
+                        Dexter Morgan é especialista em
+                        análise de padrões de sangue da
+                        Miami Metro Police Department.
+                    </p>
+
+                    <p>
+                        Inteligente, metódico e extremamente
+                        observador, ele mantém uma vida dupla
+                        cuidadosamente escondida.
+                    </p>
+
+                    <p>
+                        Seu comportamento é guiado por um
+                        conjunto de regras conhecido como
+                        Código de Harry.
+                    </p>
+
+                </div>
+
+                <img
+                    class="crime-image"
+                    src="https://images.unsplash.com/photo-1569012871812-f38ee64cd54c?auto=format&fit=crop&w=1000&q=80"
+                    alt="Investigação criminal"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CÓDIGO -->
+
+    <section id="codigo">
+
+        <div class="container">
+
+            <div class="title">
+
+                <small>Manual de sobrevivência</small>
+
+                <h2>O Código</h2>
+
+                <div class="title-line"></div>
+
+            </div>
+
+            <div class="rules">
+
+                <div class="rule">
+
+                    <div class="rule-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Não seja descoberto
+                    </h3>
+
+                    <p>
+                        Mantenha sua verdadeira identidade
+                        escondida de todos ao seu redor.
+                    </p>
+
+                </div>
+
+                <div class="rule">
+
+                    <div class="rule-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Tenha certeza
+                    </h3>
+
+                    <p>
+                        Antes de qualquer ação, tenha certeza
+                        de que está diante de uma pessoa culpada.
+                    </p>
+
+                </div>
+
+                <div class="rule">
+
+                    <div class="rule-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Não deixe rastros
+                    </h3>
+
+                    <p>
+                        Toda investigação começa pelas
+                        evidências deixadas na cena.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERÍCIA -->
+
+    <section id="pericia">
+
+        <div class="container">
+
+            <div class="title">
+
+                <small>Laboratório criminal</small>
+
+                <h2>Perícia Criminal</h2>
+
+                <div class="title-line"></div>
+
+            </div>
+
+            <div class="forensic">
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🔬
+                    </div>
+
+                    <h3>
+                        Análise
+                    </h3>
+
+                    <p>
+                        A análise de evidências ajuda os
+                        investigadores a reconstruir uma cena.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🩸
+                    </div>
+
+                    <h3>
+                        Sangue
+                    </h3>
+
+                    <p>
+                        Padrões de sangue podem fornecer
+                        informações importantes sobre um crime.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🔎
+                    </div>
+
+                    <h3>
+                        Investigação
+                    </h3>
+
+                    <p>
+                        Evidências, suspeitos e locais são
+                        conectados durante uma investigação.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERSONAGENS -->
+
+    <section id="personagens">
+
+        <div class="container">
+
+            <div class="title">
+
+                <small>Arquivos pessoais</small>
+
+                <h2>Personagens</h2>
+
+                <div class="title-line"></div>
+
+            </div>
+
+            <div class="characters">
+
+                <div class="character">
+
+                    <img
+                    scr="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_9CUTP7AW0ka7sWnnJiNmXfAMUD6WFPTxuWzglinpMA&s=10"
+
+                    >
+
+                    <div class="character-info">
+
+                        <h3>
+                            Dexter Morgan
+                        </h3>
+
+                        <span>
+                            Analista de sangue
+                        </span>
+
+                        <p>
+                            Especialista da Miami Metro
+                            com uma vida secreta.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="character">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqEXE79co99Scn0kvYZ5pcsVwMS5cFXPaRy-iU3xGBhZK7F-dNSKZ37Sk&s=10"
+                    >
+
+                    <div class="character-info">
+
+                        <h3>
+                            Debra Morgan
+                        </h3>
+
+                        <span>
+                            Detetive
+                        </span>
+
+                        <p>
+                            Detetive da Miami Metro e irmã
+                            de Dexter.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="character">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIceZQonEk3wx83ZT3tnJCbEKmFtsbF7IJQERBBI3q7j_WjQMQenHa5hB1&s=10"
+                        alt="Detetive"
+                    >
+
+                    <div class="character-info">
+
+                        <h3>
+                            Angel Batista
+                        </h3>
+
+                        <span>
+                            Detetive
+                        </span>
+
+                        <p>
+                            Investigador da Miami Metro
+                            Police Department.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="character">
+
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNaJyIY3YwXSjyRhpUKnQVhsrEw5haUZ3-24in7AUCnQ&s=100"
+                        alt="Personagem"
+                    >
+
+                    <div class="character-info">
+
+                        <h3>
+                            Rita Bennett
+                        </h3>
+
+                        <span>
+                            Família
+                        </span>
+
+                        <p>
+                            Uma das pessoas importantes
+                            na vida de Dexter.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TEMPORADAS -->
+
+    <section id="temporadas">
+
+        <div class="container">
+
+            <div class="title">
+
+                <small>Histórico</small>
+
+                <h2>Temporadas</h2>
+
+                <div class="title-line"></div>
+
+            </div>
+
+            <div class="seasons">
+
+                <div class="season">
+                    <strong>Temporada 01</strong>
+                    <span>O início</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 02</strong>
+                    <span>Bay Harbor Butcher</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 03</strong>
+                    <span>O novo código</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 04</strong>
+                    <span>Trinity Killer</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 05</strong>
+                    <span>Lumen</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 06</strong>
+                    <span>O Juízo Final</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 07</strong>
+                    <span>A verdade</span>
+                </div>
+
+                <div class="season">
+                    <strong>Temporada 08</strong>
+                    <span>O fim</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+
+    <section class="final">
+
+        <div class="container">
+
+            <div class="classified">
+                CONFIDENCIAL
+            </div>
+
+            <h2>
+                ARQUIVO ENCERRADO
+            </h2>
+
+            <p>
+                Miami Metro Police Department
+            </p>
+
+            <a
+                href="#inicio"
+                class="button button-red"
+            >
+                VOLTAR AO INÍCIO
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
 
     <footer>
-        <p>&copy; 2026 Blog de Magia. Feito com feitiçaria e HTML puro.</p>
+
+        <div class="logo">
+            DEXTER<span>.</span>
+        </div>
+
+        <p>
+            Arquivo Criminal • Projeto de fã
+        </p>
+
     </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const button = document.getElementById("likeButton");
+
+        const heart = document.getElementById("heart");
+
+        const text = document.getElementById("likeText");
+
+        const count = document.getElementById("likeCount");
+
+
+        let likes = Number(
+            localStorage.getItem("dexterLikes")
+        );
+
+        if (isNaN(likes)) {
+            likes = 0;
+        }
+
+
+        let liked =
+            localStorage.getItem("dexterLiked") === "true";
+
+
+        function updateButton() {
+
+            count.textContent =
+                likes + (likes === 1 ? " curtida" : " curtidas");
+
+
+            if (liked) {
+
+                button.classList.add("liked");
+
+                heart.textContent = "♥";
+
+                text.textContent = "CURTIDO";
+
+            } else {
+
+                button.classList.remove("liked");
+
+                heart.textContent = "♡";
+
+                text.textContent = "CURTIR";
+
+            }
+
+        }
+
+
+        button.addEventListener("click", function() {
+
+            if (liked) {
+
+                likes--;
+
+                liked = false;
+
+            } else {
+
+                likes++;
+
+                liked = true;
+
+            }
+
+
+            localStorage.setItem(
+                "dexterLikes",
+                likes
+            );
+
+
+            localStorage.setItem(
+                "dexterLiked",
+                liked
+            );
+
+
+            updateButton();
+
+        });
+
+
+        updateButton();
+
+    </script>
 
 </body>
 </html>
