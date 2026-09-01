@@ -1,20 +1,47 @@
-/* Estilos Globais e Cores (Azul Marinho e Dourado) */
+/* Variáveis de Cores (Tema Claro por padrão) */
+:root {
+    --cor-fundo: #f4f6f8;
+    --cor-post: #ffffff;
+    --cor-texto: #1a202c;
+    --cor-primaria: #0d1b2a;
+    --cor-secundaria: #d4af37; /* Dourado */
+    --cor-borda: #d4af37;
+}
+
+/* Configuração do Tema Escuro */
+body.tema-escuro {
+    --cor-fundo: #0d1b2a;
+    --cor-post: #1b263b;
+    --cor-texto: #f1f1f1;
+    --cor-primaria: #1b263b;
+}
+
+/* Estilo específico para o botão quando o tema escuro estiver ativo */
+.tema-escuro .btn-tema-escuro {
+    background-color: var(--cor-secundaria);
+    color: #0d1b2a;
+    border-color: #ffffff;
+}
+
+/* Estilos Globais */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0d1b2a;
-    color: #f1f1f1;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Cabeçalho */
 header {
-    background: linear-gradient(135deg, #1b263b, #0d1b2a);
-    color: #d4af37;
+    background: linear-gradient(135deg, var(--cor-primaria), #0d1b2a);
+    color: var(--cor-secundaria);
     text-align: center;
     padding: 2.5rem 1rem;
-    border-bottom: 3px solid #d4af37;
+    border-bottom: 3px solid var(--cor-secundaria);
+    position: relative;
 }
 
 header h1 {
@@ -27,6 +54,28 @@ header p {
     color: #e0e1dd;
 }
 
+/* Estilo do Botão de Troca de Tema */
+.btn-tema-escuro {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+    border: 2px solid var(--cor-secundaria);
+    padding: 10px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-tema-escuro:hover {
+    transform: scale(1.05);
+}
+
 /* Estrutura Principal */
 .container {
     max-width: 900px;
@@ -36,16 +85,17 @@ header p {
 
 /* Cartões de Postagem */
 .post {
-    background-color: #1b263b;
-    border: 1px solid #d4af37;
+    background-color: var(--cor-post);
+    border: 1px solid var(--cor-borda);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+    transition: background-color 0.3s ease;
 }
 
 .post h2 {
-    color: #d4af37;
+    color: var(--cor-secundaria);
     margin-top: 0;
 }
 
@@ -55,7 +105,7 @@ header p {
     max-height: 400px;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid #d4af37;
+    border: 1px solid var(--cor-borda);
     margin: 15px 0;
 }
 
@@ -90,8 +140,8 @@ ul li::before {
 
 .like-btn {
     background: transparent;
-    border: 2px solid #d4af37;
-    color: #d4af37;
+    border: 2px solid var(--cor-secundaria);
+    color: var(--cor-secundaria);
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
@@ -104,7 +154,7 @@ ul li::before {
 }
 
 .like-btn:hover {
-    background-color: #d4af37;
+    background-color: var(--cor-secundaria);
     color: #0d1b2a;
 }
 
@@ -121,7 +171,7 @@ ul li::before {
 footer {
     text-align: center;
     padding: 20px;
-    border-top: 1px solid #d4af37;
+    border-top: 1px solid var(--cor-secundaria);
     color: #778da9;
     font-size: 0.9rem;
 }
